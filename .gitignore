@@ -1,0 +1,98 @@
+############################################
+# OS / Editor
+############################################
+.DS_Store
+Thumbs.db
+
+.vscode/
+!.vscode/extensions.json
+!.vscode/settings.json
+
+.idea/
+*.iml
+
+############################################
+# Java / Spring Boot (JDK 25)
+############################################
+target/
+out/
+build/
+
+*.class
+*.jar
+*.war
+*.ear
+*.log
+
+# Maven
+.mvn/timing.properties
+.mvn/wrapper/maven-wrapper.jar
+
+# Gradle (if ever used)
+.gradle/
+gradle-app.setting
+
+############################################
+# Spring Boot Runtime
+############################################
+application-local.yml
+application-local.properties
+application-dev.yml
+application-dev.properties
+
+############################################
+# Node / React (Vite + Tailwind)
+############################################
+node_modules/
+dist/
+build/
+.cache/
+.vite/
+.eslintcache
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+############################################
+# Environment Variables
+############################################
+.env
+.env.*
+!.env.example
+
+############################################
+# Docker / PostgreSQL
+############################################
+docker/postgres/data/
+docker/db/data/
+
+# Docker override files
+docker-compose.override.yml
+
+############################################
+# Database
+############################################
+*.sql
+*.dump
+*.bak
+
+############################################
+# Test / Coverage
+############################################
+coverage/
+reports/
+*.lcov
+
+############################################
+# Logs
+############################################
+logs/
+*.log
+
+############################################
+# Temporary / Misc
+############################################
+tmp/
+temp/
