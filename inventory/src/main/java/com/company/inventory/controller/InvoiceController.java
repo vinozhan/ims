@@ -5,6 +5,7 @@ import com.company.inventory.dto.InvoiceResponseDTO;
 import com.company.inventory.service.InvoiceService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -17,6 +18,7 @@ public class InvoiceController {
         this.invoiceService = invoiceService;
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN','CASHIER')")
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public InvoiceResponseDTO createInvoice(@RequestBody @Valid InvoiceRequestDTO request) {

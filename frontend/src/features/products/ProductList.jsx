@@ -1,7 +1,9 @@
-
+import { getUserRole } from "../../utils/auth";
 import { deleteProduct } from "./productService";
 
 export default function ProductList({ products, onDelete, loading }) {
+  const role = getUserRole();
+
   const handleDelete = async (id) => {
     await deleteProduct(id);
     onDelete(); // 🔥 refresh list
@@ -25,9 +27,11 @@ export default function ProductList({ products, onDelete, loading }) {
             <span>
               {p.name} ({p.quantity}) - Rs.{p.price}
             </span>
-            <button onClick={() => handleDelete(p.id)} className="text-red-600">
+            {role === "ADMIN" && (
+              <button onClick={() => handleDelete(p.id)} className="text-red-600">
               Delete
             </button>
+            )}
           </li>
         ))}
       </ul>
