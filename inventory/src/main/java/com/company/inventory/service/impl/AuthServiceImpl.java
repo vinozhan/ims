@@ -35,6 +35,10 @@ public class AuthServiceImpl implements AuthService {
             throw new ResourceNotFoundException("Invalid username or password");
         }
 
+        if (!user.getEnabled()) {
+            throw new ResourceNotFoundException("User account is disabled");
+        }
+
         String token = jwtUtil.generateToken(user.getUsername(), user.getRole());
 
         return new LoginResponseDTO(token);

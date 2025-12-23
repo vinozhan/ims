@@ -15,6 +15,7 @@ export default function Navbar() {
       <div className="flex gap-4">
         {/* ADMIN only */}
         {role === "ADMIN" && <Link to="/products">Products</Link>}
+        {role === "ADMIN" && <Link to="/users">Users</Link>}
 
         {/* ADMIN + CASHIER */}
         <Link to="/billing">Billing</Link>

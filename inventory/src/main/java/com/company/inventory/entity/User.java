@@ -23,4 +23,7 @@ public class User {
 
     @Column(nullable = false)
     private String role; // ADMIN, CASHIER
+
+    @Column(nullable = false)
+    private Boolean enabled = true;
 }

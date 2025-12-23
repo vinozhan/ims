@@ -3,6 +3,8 @@ import LoginPage from "../pages/LoginPage";
 import HomePage from "../pages/HomePage";
 import ProductsPage from "../pages/ProductsPage";
 import BillingPage from "../pages/BillingPage";
+import UserManagement from "../pages/UserManagement";
+import AdminRoute from "./AdminRoute";
 import ProtectedRoute from "./ProtectedRoute";
 
 export default function AppRoutes() {
@@ -50,9 +52,19 @@ export default function AppRoutes() {
           }
         />
 
+        <Route
+          path="/users"
+          element={
+            <ProtectedRoute>
+              <AdminRoute>
+                <UserManagement />
+              </AdminRoute>
+            </ProtectedRoute>
+          }
+        />
+
         {/* Catch-all */}
         <Route path="*" element={<Navigate to="/" replace />} />
-
       </Routes>
     </BrowserRouter>
   );

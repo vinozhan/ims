@@ -6,6 +6,9 @@ import com.company.inventory.repository.UserRepository;
 import com.company.inventory.service.UserService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import com.company.inventory.dto.UserResponseDTO;
+import com.company.inventory.exception.ResourceNotFoundException;
+import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -27,6 +30,27 @@ public class UserServiceImpl implements UserService {
         user.setPassword(passwordEncoder.encode(request.getPassword()));
         user.setRole(request.getRole());
 
+        userRepository.save(user);
+    }
+
+    @Override
+    public List<UserResponseDTO> getAllUsers() {
+        List<User> users = userRepository.findAll();
+        return users.stream()
+                .map(user -> new UserResponseDTO(
+                        user.getId(),
+                        user.getUsername(),
+                        user.getRole(),
+                        user.getEnabled()))
+                .toList();
+    }
+
+    @Override
+    public void toggleUserStatus(Long userId) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found with id " + userId));
+
+        user.setEnabled(!user.getEnabled());
         userRepository.save(user);
     }
 }
